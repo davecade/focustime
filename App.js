@@ -1,24 +1,23 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import { Text, View, StyleSheet } from 'react-native';
-import Constants from 'expo-constants';
-
-
-// or any pure javascript modules available in npm
-import { Card } from 'react-native-paper';
+import Focus from './src/features/focus/Focus'
 
 export default function App() {
+  const [ focusSubject, setFocusSubject ] = useState("Dave")
+
+
   return (
     <View style={styles.container}>
-        <Text> Hello Dave </Text>
+        <Text> {focusSubject ? <Focus /> : "Empty"}  </Text>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: 'center',
-    backgroundColor: '#ecf0f1',
-    padding: 50,
+    flex: 1, //-- fiills whole screen
+    backgroundColor: '#252250',
+    alignItems: "center",
+    paddingTop: 100
   },
 });
