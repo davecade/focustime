@@ -8,7 +8,10 @@ const Focus = () => {
     <View style={styles.container}>
         <View style={styles.titleContainer}>
             <Text style={styles.title}>What would you like to focus on?</Text>
-            <TextInput/>
+            <View style={styles.inputContainer}>
+              <TextInput/>
+            </View>
+            
         </View>
     </View>
   );
@@ -16,14 +19,20 @@ const Focus = () => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1, //-- fills whole screen
+    flex: 1,
   },
   titleContainer: {
+    flex: 0.5,
+    padding: 16,
+    justifyContent: "center"
   },
   title: {
       color: "white",
       fontWeight: "bold",
-      fontSize: 20
+      fontSize: 24,
+  },
+  inputContainer: {
+    paddingTop: 20
   }
 });
 

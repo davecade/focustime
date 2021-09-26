@@ -8,7 +8,7 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-        <Text> {focusSubject ? <Focus /> : "Empty"}  </Text>
+        {focusSubject ? <Focus /> : <Text>None</Text>}
     </View>
   );
 }
@@ -18,6 +18,6 @@ const styles = StyleSheet.create({
     flex: 1, //-- fiills whole screen
     backgroundColor: '#252250',
     alignItems: "center",
-    paddingTop: 100
+    marginTop: 25
   },
 });
