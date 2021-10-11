@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { Text, View, StyleSheet } from 'react-native'
+import { Text, StyleSheet } from 'react-native'
 import { fontSizes, spacing } from '../utils/sizes'
 import { colors } from '../utils/colors'
 
 const formtaTime = time => time < 10 ? `0${time}` : time
 const minutesToMillies = min => min*1000*60
 
-export const Countdown = ({ minutes = 1, isPaused}) => {
+export const Countdown = ({ minutes = 20, isPaused}) => {
     const interval = useRef(null)
     const [ millis, setMillis ] =  useState(minutesToMillies(minutes))
     const minute = Math.floor(millis / 1000 / 60) % 60;
@@ -26,10 +26,12 @@ export const Countdown = ({ minutes = 1, isPaused}) => {
     }
 
     useEffect(() => {
+        if(isPaused) return
+
         interval.current = setInterval(countDown, 1000)
 
         return () => clearInterval(interval.current)
-    }, [])
+    }, [isPaused])
 
     return (
         <Text style={styles.text}>{formtaTime(minute)}:{formtaTime(second)}</Text>

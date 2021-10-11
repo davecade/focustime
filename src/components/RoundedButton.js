@@ -26,13 +26,14 @@ const styles = size => StyleSheet.create({
         alignItems: 'center',
         borderColor: "#fff",
         borderWidth: 2,
+        justifyContent: 'center',
+        alignItems: 'center',
     },
     text: {
         color: '#fff',
-        fontSize: size/1.6,
+        fontSize: size/4,
     },
     titleContainer: {
-        flex: 1,
-        justifyContent: 'center',
+
     }
 })
