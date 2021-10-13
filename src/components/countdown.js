@@ -6,12 +6,11 @@ import { colors } from '../utils/colors'
 const formtaTime = time => time < 10 ? `0${time}` : time
 const minutesToMillies = min => min*1000*60
 
-export const Countdown = ({ minutes = 20, isPaused}) => {
+export const Countdown = ({ minutes = 1, isPaused, setProgress}) => {
     const interval = useRef(null)
     const [ millis, setMillis ] =  useState(minutesToMillies(minutes))
     const minute = Math.floor(millis / 1000 / 60) % 60;
     const second = Math.floor(millis / 1000) % 60;
-
 
     const countDown = () => {
         setMillis((time) => {
@@ -20,7 +19,7 @@ export const Countdown = ({ minutes = 20, isPaused}) => {
                 return time;
             }
             const timeLeft = time - 1000;
-            //report the progress
+            setProgress(timeLeft/minutesToMillies(minutes))
             return timeLeft
         })
     }
