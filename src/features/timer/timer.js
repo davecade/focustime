@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState } from "react";
 import { View, StyleSheet, Text } from "react-native"
 import { colors } from '../../utils/colors'
 import { spacing } from '../../utils/sizes'
@@ -15,13 +15,12 @@ export const Timer = ({ focusSubject }) => {
     return (
         <View style={styles.container}>
             <View style={styles.countdownContainer}>
-                <Countdown isPaused={!isStarted} setProgress={setProgress} />
+                <Countdown isPaused={!isStarted} setProgress={setProgress} setIsStarted={setIsStarted} />
             </View>
             
             <Text style={styles.title}>{"We are focusing on:"}</Text>
             <Text style={styles.task}>{focusSubject}</Text>
 
-            {/* Progress Bar */}
             <ProgressBar
                 progress={progress}
                 style={styles.progressBar}
