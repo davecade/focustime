@@ -9,13 +9,13 @@ import { ProgressBar } from "react-native-paper";
 
 
 export const Timer = ({ focusSubject }) => {
-    const [ isStarted, setIsStarted ] = useState(false)
+    const [ timerStarted, setTimerStarted ] = useState(false)
     const [ progress, setProgress ] = useState(1)
 
     return (
         <View style={styles.container}>
             <View style={styles.countdownContainer}>
-                <Countdown isPaused={!isStarted} setProgress={setProgress} setIsStarted={setIsStarted} />
+                <Countdown timerStarted={timerStarted} setTimerStarted={setTimerStarted} setProgress={setProgress}  />
             </View>
             
             <Text style={styles.title}>{"We are focusing on:"}</Text>
@@ -28,10 +28,10 @@ export const Timer = ({ focusSubject }) => {
 
             <View style={styles.buttonContainer}>
                 {
-                    isStarted ?
-                    <RoundedButton title="pause" size={100} onPress={() => setIsStarted(false)} />
+                    timerStarted ?
+                    <RoundedButton title="pause" size={100} onPress={() => setTimerStarted(false)} />
                     :
-                    <RoundedButton title="start" size={100} onPress={() => setIsStarted(true)} />
+                    <RoundedButton title="start" size={100} onPress={() => setTimerStarted(true)} />
                 }
             </View>
 
