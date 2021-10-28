@@ -6,14 +6,21 @@ import { colors } from '../utils/colors'
 const formtaTime = time => time < 10 ? `0${time}` : time
 const minutesToMillies = min => min*1000*60
 
-export const Countdown = ({ minutes = .10, timerStarted, setTimerStarted, setProgress }) => {
+export const Countdown = ({ minutes, timerStarted, setTimerStarted, setProgress }) => {
     //const interval = useRef(null)
     const [ millis, setMillis ] =  useState(minutesToMillies(minutes))
     const minute = Math.floor(millis / 1000 / 60) % 60;
     const second = Math.floor(millis / 1000) % 60;
 
     useEffect(() => {
-        if(timerStarted === false) return
+        setMillis(minutesToMillies(minutes))
+    }, [minutes])
+
+    useEffect(() => {
+        if(timerStarted === false) {
+            clearInterval(interval)
+            return
+        }
 
         let interval = setInterval(() => {
             if(millis===0) {
