@@ -17,6 +17,7 @@ export const Timer = ({ focusSubject }) => {
     const handleTimerClick = time => {
         setTime(time)
         setProgress(1)
+        setTimerStarted(false)
     }
 
     return (
