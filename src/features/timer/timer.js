@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { View, StyleSheet, Text, Vibration, Platform } from "react-native"
 import { colors } from '../../utils/colors'
 import { spacing } from '../../utils/sizes'
@@ -10,12 +10,13 @@ import { useKeepAwake } from "expo-keep-awake";
 
 
 
-export const Timer = ({ focusSubject }) => {
+export const Timer = ({ focusSubject, timerEnd }) => {
     useKeepAwake();
     const DEFAULT_TIME = 0.1
     const [ time, setTime ] = useState(DEFAULT_TIME)
     const [ timerStarted, setTimerStarted ] = useState(false)
     const [ progress, setProgress ] = useState(1)
+    const [ timerFinished, setTimerFinished ] = useState(false)
 
     const handleTimerClick = time => {
         setTime(time)
@@ -36,7 +37,16 @@ export const Timer = ({ focusSubject }) => {
         vibrate()
         setTimerStarted(false)
         setProgress(1)
+        setTimerFinished(true)
     }
+
+    useEffect(() => {
+
+        if(timerFinished) {
+            timerEnd()
+        }
+
+    }, [timerFinished])
 
     return (
         <View style={styles.container}>
