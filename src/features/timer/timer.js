@@ -10,7 +10,7 @@ import { useKeepAwake } from "expo-keep-awake";
 
 
 
-export const Timer = ({ focusSubject, timerEnd }) => {
+export const Timer = ({ focusSubject, setFocusSubject }) => {
     useKeepAwake();
     const DEFAULT_TIME = 0.1
     const [ time, setTime ] = useState(DEFAULT_TIME)
@@ -41,11 +41,9 @@ export const Timer = ({ focusSubject, timerEnd }) => {
     }
 
     useEffect(() => {
-
         if(timerFinished) {
-            timerEnd()
+            setFocusSubject('')
         }
-
     }, [timerFinished])
 
     return (
