@@ -93,7 +93,9 @@ export const Timer = ({ focusSubject, setFocusSubject }) => {
                     <RoundedButton title="start" size={100} onPress={() => setTimerStarted(true)} />
                 }
             </View>
-
+            <View style={styles.buttonCancel}>
+                <RoundedButton title="Cancel" size={60} onPress={() => setFocusSubject('')} />
+            </View>
         </View>
     )
 }
@@ -102,7 +104,8 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         paddingTop: spacing.lg,
-        alignItems: "center"
+        alignItems: "center",
+        alignSelf: 'stretch'
     },
     title: {
         color: colors.white,
@@ -129,5 +132,10 @@ const styles = StyleSheet.create({
     timingContainer: {
         display: 'flex',
         flexDirection: 'row',
+    },
+    buttonCancel: {
+        flex:1,
+        justifyContent: "center",
+        alignSelf: 'stretch'
     }
 })
