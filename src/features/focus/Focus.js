@@ -5,7 +5,7 @@ import { RoundedButton } from '../../components/RoundedButton';
 import { fontSizes, spacing } from '../../utils/sizes';
 import { colors } from '../../utils/colors'
 
-const Focus = ({ setFocusSubject }) => {
+const Focus = ({ setFocusSubject,  }) => {
   const [ addedSubject, setAddedSubject ] = useState(null)
 
   return (

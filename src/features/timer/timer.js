@@ -8,9 +8,13 @@ import { ProgressBar } from "react-native-paper";
 import Timing from './timing'
 import { useKeepAwake } from "expo-keep-awake";
 
+const STATUS = {
+    COMPLETED: 1,
+    CANCELLED: 2
+}
 
 
-export const Timer = ({ focusSubject, setFocusSubject }) => {
+export const Timer = ({ focusSubject, setFocusSubject, addFocusHistorySubjectWithState }) => {
     useKeepAwake();
     const DEFAULT_TIME = 0.1
     const [ time, setTime ] = useState(DEFAULT_TIME)
@@ -34,10 +38,16 @@ export const Timer = ({ focusSubject, setFocusSubject }) => {
     }
 
     const onEnd = () => {
+        addFocusHistorySubjectWithState(STATUS.COMPLETED)
         vibrate()
         setTimerStarted(false)
         setProgress(1)
         setTimerFinished(true)
+    }
+
+    const handleCancel = () => {
+        addFocusHistorySubjectWithState(STATUS.CANCELLED)
+        setFocusSubject('')
     }
 
     useEffect(() => {
@@ -94,7 +104,7 @@ export const Timer = ({ focusSubject, setFocusSubject }) => {
                 }
             </View>
             <View style={styles.buttonCancel}>
-                <RoundedButton title="Cancel" size={60} onPress={() => setFocusSubject('')} />
+                <RoundedButton title="Cancel" size={60} onPress={handleCancel} />
             </View>
         </View>
     )
