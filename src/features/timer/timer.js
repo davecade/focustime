@@ -104,7 +104,7 @@ export const Timer = ({ focusSubject, setFocusSubject, addFocusHistorySubjectWit
                 }
             </View>
             <View style={styles.buttonCancel}>
-                <RoundedButton title="Cancel" size={60} onPress={handleCancel} />
+                <RoundedButton title="-" size={60} onPress={handleCancel} />
             </View>
         </View>
     )

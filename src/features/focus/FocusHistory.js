@@ -1,5 +1,5 @@
 import React from 'react'
-import { view, StyleSheet, FlatList, Text, SafeAreaView } from 'react-native'
+import { view, StyleSheet, FlatList, Text, SafeAreaView, View } from 'react-native'
 
 import { fontSizes, spacing } from '../../utils/sizes'
 import { RoundedButton } from '../../components/RoundedButton'
@@ -34,6 +34,10 @@ const FocusHistory = ({ focusHistory, onClear }) => {
                             renderItem={HistoryItem}
                             keyExtractor={(item, index) => `${index}`}
                         />
+                        <View style={styles.clearContainer}>
+                            <RoundedButton size={75} title="Clear" onPress={() => clearHistory()}>
+                            </RoundedButton>
+                        </View>
                     </>
                 )}
                 
@@ -50,6 +54,10 @@ const styles = StyleSheet.create({
     title: {
         color: "white",
         fontSize: fontSizes.lg
+    },
+    clearContainer: {
+        alignItems: 'center',
+        padding: spacing.md
     }
 })
 
