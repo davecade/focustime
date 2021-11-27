@@ -5,6 +5,7 @@ import FocusHistory from './src/features/focus/FocusHistory';
 import { colors } from './src/utils/colors'
 import { spacing } from './src/utils/sizes';
 import { Timer } from './src/features/timer/timer'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 
 export default function App() {
@@ -18,6 +19,34 @@ export default function App() {
   const onClear = () => {
     setFocusHistory([])
   }
+  const saveFocusHIstory = async () => {
+    try {
+      await AsyncStorage.setItem("focusHistory", JSON.stringify(focusHistory))
+    } catch(error) {
+      console.log(error)
+    }
+  }
+
+  const loadFocusHistory = async () => {
+    try {
+      const history = await AsyncStorage.getItem("focusHistory")
+
+      if(history && JSON.parse(history).length) {
+        setFocusHistory(JSON.parse(history))
+      }
+
+    } catch(error) {
+      console.log(error)
+    }
+  }
+
+  useEffect(() => {
+    loadFocusHistory()
+  }, [])
+
+  useEffect(() => {
+    saveFocusHIstory()
+  }, [focusHistory])
 
   return (
     <View style={styles.container}>
